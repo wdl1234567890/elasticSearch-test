@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="el">
+		<input v-model="keyword" />
+		<button type="button" @click="search">搜索</button>
+		<div>
+			<div v-for="item in dataList">
+				<img alt="" :src="item.cover">
+				<p v-html="item.title"></p>
+				<span>{{item.price}}</span>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" th:src="@{/js/vue.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/axios.min.js}"></script>
+<script type="text/javascript">
+	new Vue({
+		el:"#el",
+		data:{
+			keyword:'',
+			dataList:[]
+		},
+		methods:{
+			search(){
+				axios.get('/search/'+this.keyword+"/1").then(response=>{
+					this.dataList = response.data
+					this.keyword = ''
+				})
+			}
+		}
+	})
+</script>
+</html>

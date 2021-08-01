@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+<title>购买VIP确认页面</title>
+<style type="text/css">
+body{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    line-height:50px;
+    font-size: 18px;
+    color:#666;
+}
+a{
+	line-height:30px;
+	width:70%
+}
+</style>
+</head>
+<body>
+	<h3>购买VIP</h3>
+	<img alt="头像" th:src="${user.avator}">
+	<div th:text="'昵称：'+${user.userName}"></div>
+	<div th:text="'VIP期限：'+${vipKeepMonthCount}+'个月'"></div>
+	<div th:text="'到期时间：'+${expireTime}"></div>
+	<div th:text="'总金额：'+${allAmount}"></div>
+	<a style="margin-top:20px;padding:10px 15px;display: block;border-radius:5px;background-color:blue;color:#fff;" th:href="@{'/payment/payPage?allAmount=' + ${allAmount} + '&vipKeepMonthCount=' + ${vipKeepMonthCount} + '&token=' +${token}}">确认购买</a>
+</body>
+<script type="text/javascript">
+	
+</script>
+</html>
